@@ -1,4 +1,5 @@
 import express from "express";
+import cookieParser from 'cookie-parser';
 import dotenv from "dotenv";
 import mongoose from "mongoose";
 import authRoute from "./api/routes/auth.js";
@@ -21,6 +22,9 @@ const connect = async () => {
 mongoose.connection.on("disconnected", () => {
   console.log("mongoDB disconnected!");
 });
+
+// Use cookie parser middleware
+app.use(cookieParser());
 
 //middlewares
 app.use(express.json())
